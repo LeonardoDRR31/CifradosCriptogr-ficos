@@ -1,0 +1,27 @@
+{#Blockchain, BB84, OTP#}
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Generar Certificado X.509 Autofirmado</h2>
+
+<p>Ingresa el Common Name y los días de validez.</p>
+
+<form method="post">
+    <label>Common Name (CN):</label><br>
+    <input type="text" name="common_name" required><br><br>
+
+    <label>Días de validez:</label><br>
+    <input type="number" name="days_valid" value="365" required><br><br>
+
+    <button type="submit">Generar Certificado</button>
+</form>
+
+{% if result %}
+<hr>
+<h3>Clave Privada (PEM):</h3>
+<pre>{{ result.private }}</pre>
+
+<h3>Certificado X.509 (PEM):</h3>
+<pre>{{ result.cert }}</pre>
+{% endif %}
+{% endblock %}

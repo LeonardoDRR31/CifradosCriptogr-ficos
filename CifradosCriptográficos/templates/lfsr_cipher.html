@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cifrado en Flujo - LFSR</h2>
+
+<p>Este formulario te permite cifrar o descifrar texto usando un LFSR (Linear Feedback Shift Register).</p>
+<p><strong>Semilla:</strong> Una cadena de bits, por ejemplo <code>1100101</code>.</p>
+<p><strong>Taps:</strong> Posiciones de realimentación separadas por comas. Por ejemplo <code>0,2</code> indica XOR entre bit 0 y 2.</p>
+<p><strong>Texto:</strong> Si quieres cifrar, ingresa el texto en claro. Si quieres descifrar, ingresa el texto en hexadecimal.</p>
+
+<form method="post">
+    <label>Semilla:</label><br>
+    <input type="text" name="seed" required><br><br>
+    <label>Taps:</label><br>
+    <input type="text" name="taps" required><br><br>
+    <label>Texto (si descifra, ingrese en hexadecimal):</label><br>
+    <textarea name="text" rows="4" cols="50" required></textarea><br><br>
+    <button type="submit" name="action" value="Encrypt">Cifrar</button>
+    <button type="submit" name="action" value="Decrypt">Descifrar</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

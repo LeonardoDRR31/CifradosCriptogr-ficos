@@ -1,0 +1,21 @@
+{#plantilla base con navbar#}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cifrados Criptográficos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Cifrados Criptográficos</h1>
+        <nav>
+            <a href="/">Menú Principal</a> |
+            {#<a href="/stream_ciphers">Cifrado en Flujo</a>#}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

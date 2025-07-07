@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Intercambio de Claves - Diffie-Hellman</h2>
+
+<p>Este formulario te permite:</p>
+<ul>
+    <li>Generar parámetros y claves Diffie-Hellman.</li>
+    <li>Calcular una clave compartida con la clave pública de la otra parte.</li>
+</ul>
+
+<form method="post">
+    <button type="submit" name="action" value="Generate">Generar parámetros y claves</button>
+</form>
+
+{% if generated %}
+<h3>Datos generados:</h3>
+<p><strong>p:</strong> {{ generated.p }}</p>
+<p><strong>g:</strong> {{ generated.g }}</p>
+<p><strong>Clave privada:</strong> {{ generated.private }}</p>
+<p><strong>Clave pública:</strong> {{ generated.public }}</p>
+{% endif %}
+
+<hr>
+
+<form method="post">
+    <label>p:</label><br>
+    <input type="text" name="p" required><br><br>
+    <label>Clave pública de la otra parte:</label><br>
+    <input type="text" name="other_public" required><br><br>
+    <label>Tu clave privada:</label><br>
+    <input type="text" name="private_key" required><br><br>
+    <button type="submit" name="action" value="Compute">Calcular clave compartida</button>
+</form>
+
+{% if result %}
+<h3>Clave compartida:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Firma Digital con ElGamal</h2>
+
+<form method="post">
+    <button type="submit" name="action" value="Generate">Generar Claves ElGamal</button>
+</form>
+
+{% if generated %}
+<h3>Claves Generadas:</h3>
+<p><strong>p:</strong> {{ generated.p }}</p>
+<p><strong>g:</strong> {{ generated.g }}</p>
+<p><strong>x (privada):</strong> {{ generated.x }}</p>
+<p><strong>y (pública):</strong> {{ generated.y }}</p>
+{% endif %}
+
+<hr>
+
+<form method="post">
+    <label>p:</label><br>
+    <input type="text" name="p" required><br><br>
+    <label>g:</label><br>
+    <input type="text" name="g" required><br><br>
+    <label>x (clave privada):</label><br>
+    <input type="text" name="x" required><br><br>
+    <label>Texto a firmar:</label><br>
+    <textarea name="text" rows="4" cols="70"></textarea><br><br>
+    <button type="submit" name="action" value="Sign">Firmar</button>
+</form>
+
+<hr>
+
+<form method="post">
+    <label>p:</label><br>
+    <input type="text" name="p" required><br><br>
+    <label>g:</label><br>
+    <input type="text" name="g" required><br><br>
+    <label>y (clave pública):</label><br>
+    <input type="text" name="y" required><br><br>
+    <label>Texto:</label><br>
+    <textarea name="text" rows="4" cols="70"></textarea><br><br>
+    <label>Firma (r,s separados por coma):</label><br>
+    <input type="text" name="signature" required><br><br>
+    <button type="submit" name="action" value="Verify">Verificar Firma</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

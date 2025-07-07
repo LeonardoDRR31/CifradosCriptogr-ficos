@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Funciones Hash</h2>
+
+<p>Selecciona un algoritmo y escribe el texto para obtener el hash.</p>
+
+<form method="post">
+    <label>Algoritmo:</label><br>
+    <select name="algorithm">
+        <option value="MD5">MD5</option>
+        <option value="SHA1">SHA-1</option>
+        <option value="SHA256">SHA-256</option>
+    </select><br><br>
+    <label>Texto:</label><br>
+    <textarea name="text" rows="4" cols="60"></textarea><br><br>
+    <button type="submit">Calcular Hash</button>
+</form>
+
+{% if result %}
+<h3>Hash:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

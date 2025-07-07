@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cifrado en Flujo - A5/1</h2>
+
+<p>Este formulario te permite cifrar o descifrar texto usando una implementación educativa de A5/1.</p>
+<p><strong>Clave:</strong> Una cadena binaria de al menos 64 bits (por ejemplo, <code>100101... (64 bits)</code>).</p>
+<p><strong>Texto:</strong> Si quieres cifrar, ingresa el texto en claro. Si quieres descifrar, ingresa el texto en hexadecimal.</p>
+
+<form method="post">
+    <label>Clave (64 bits):</label><br>
+    <input type="text" name="key" required><br><br>
+    <label>Texto (si descifra, ingrese en hexadecimal):</label><br>
+    <textarea name="text" rows="4" cols="50" required></textarea><br><br>
+    <button type="submit" name="action" value="Encrypt">Cifrar</button>
+    <button type="submit" name="action" value="Decrypt">Descifrar</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

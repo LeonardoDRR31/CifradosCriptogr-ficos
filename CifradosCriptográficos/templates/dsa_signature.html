@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Firma Digital con DSA</h2>
+
+<form method="post">
+    <button type="submit" name="action" value="Generate">Generar Claves DSA</button>
+</form>
+
+{% if generated %}
+<h3>Claves Generadas:</h3>
+<p><strong>Privada:</strong></p>
+<pre>{{ generated.private }}</pre>
+<p><strong>Pública:</strong></p>
+<pre>{{ generated.public }}</pre>
+{% endif %}
+
+<hr>
+
+<form method="post">
+    <label>Clave Privada:</label><br>
+    <textarea name="private" rows="6" cols="70"></textarea><br><br>
+    <label>Texto a firmar:</label><br>
+    <textarea name="text" rows="4" cols="70"></textarea><br><br>
+    <button type="submit" name="action" value="Sign">Firmar</button>
+</form>
+
+<hr>
+
+<form method="post">
+    <label>Clave Pública:</label><br>
+    <textarea name="public" rows="6" cols="70"></textarea><br><br>
+    <label>Texto:</label><br>
+    <textarea name="text" rows="4" cols="70"></textarea><br><br>
+    <label>Firma (hexadecimal):</label><br>
+    <textarea name="signature" rows="3" cols="70"></textarea><br><br>
+    <button type="submit" name="action" value="Verify">Verificar Firma</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

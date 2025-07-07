@@ -1,0 +1,23 @@
+{#DES, AES, Blowfish#}
+{% extends "base.html" %}
+{% block content %}
+<h2>Cifrado en Bloque - DES</h2>
+
+<p>Este formulario te permite cifrar o descifrar texto usando el algoritmo DES (Data Encryption Standard).</p>
+<p><strong>Clave:</strong> Debe ser máximo de 8 caracteres. Si es más corta, se completa con ceros.</p>
+<p><strong>Texto:</strong> Si quieres cifrar, ingresa el texto en claro. Si quieres descifrar, ingresa el texto en hexadecimal.</p>
+
+<form method="post">
+    <label>Clave:</label><br>
+    <input type="text" name="key" required><br><br>
+    <label>Texto (si descifra, ingrese en hexadecimal):</label><br>
+    <textarea name="text" rows="4" cols="50" required></textarea><br><br>
+    <button type="submit" name="action" value="Encrypt">Cifrar</button>
+    <button type="submit" name="action" value="Decrypt">Descifrar</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

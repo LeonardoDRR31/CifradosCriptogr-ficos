@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cifrado Asimétrico - Mochila (Merkle-Hellman)</h2>
+
+<p>Este formulario te permite cifrar o descifrar texto usando el sistema de mochila supercreciente.</p>
+<p><strong>W:</strong> La secuencia supercreciente, por ejemplo: <code>2,3,7,14,30,57,120,251</code></p>
+<p><strong>q:</strong> Un entero mayor que la suma de W, por ejemplo: <code>491</code></p>
+<p><strong>r:</strong> Entero coprimo con q, por ejemplo: <code>41</code></p>
+<p><strong>Texto:</strong> Si quieres cifrar, ingresa texto plano. Si quieres descifrar, ingresa los números separados por comas.</p>
+
+<form method="post">
+    <label>W:</label><br>
+    <input type="text" name="W" required><br><br>
+    <label>q:</label><br>
+    <input type="number" name="q" required><br><br>
+    <label>r:</label><br>
+    <input type="number" name="r" required><br><br>
+    <label>Texto:</label><br>
+    <textarea name="text" rows="4" cols="50" required></textarea><br><br>
+    <button type="submit" name="action" value="Encrypt">Cifrar</button>
+    <button type="submit" name="action" value="Decrypt">Descifrar</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

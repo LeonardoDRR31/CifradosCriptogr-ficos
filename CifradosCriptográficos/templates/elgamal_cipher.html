@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cifrado Asimétrico - ElGamal</h2>
+
+<p>Este formulario te permite:</p>
+<ul>
+    <li>Generar claves ElGamal.</li>
+    <li>Cifrar un mensaje.</li>
+    <li>Descifrar un mensaje.</li>
+</ul>
+
+<form method="post">
+    <button type="submit" name="action" value="Generate">Generar claves ElGamal</button>
+</form>
+
+{% if generated %}
+<h3>Claves generadas:</h3>
+<p><strong>p:</strong> {{ generated.p }}</p>
+<p><strong>g:</strong> {{ generated.g }}</p>
+<p><strong>x (privada):</strong> {{ generated.x }}</p>
+<p><strong>y (pública):</strong> {{ generated.y }}</p>
+{% endif %}
+
+<hr>
+
+<form method="post">
+    <label>p:</label><br>
+    <input type="text" name="p" required><br><br>
+    <label>g:</label><br>
+    <input type="text" name="g"><br><br>
+    <label>y (clave pública):</label><br>
+    <input type="text" name="y"><br><br>
+    <label>x (clave privada):</label><br>
+    <input type="text" name="x"><br><br>
+    <label>Texto:</label><br>
+    <textarea name="text" rows="4" cols="70" required></textarea><br><br>
+    <button type="submit" name="action" value="Encrypt">Cifrar</button>
+    <button type="submit" name="action" value="Decrypt">Descifrar</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}

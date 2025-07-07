@@ -1,0 +1,24 @@
+{# Menú Principal #}
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Menú Principal</h2>
+<ul>
+    <li><a href="/stream_ciphers">Cifrado en Flujo(CR4)</a></li>
+    <li><a href="/block_ciphers">Cifrado en bloque(DES)</a></li>
+    <li><a href="/aes_cipher">Cifrado en Bloque - AES</a></li>
+    <li><a href="/lfsr_cipher">Cifrado en Flujo - LFSR</a></li>
+    <li><a href="/a51_cipher">Cifrado en Flujo - A5/1</a></li>
+    <li><a href="/triple_des_cipher">Cifrado en Bloque - Triple DES</a></li>
+    <li><a href="/blowfish_cipher">Cifrado en Bloque - Blowfish</a></li>
+    <li><a href="/knapsack_cipher">Cifrado Asimétrico - Mochila</a></li>
+    <li><a href="/rsa_cipher">Cifrado Asimétrico - RSA</a></li>
+    <li><a href="/diffie_hellman">Intercambio de Claves - Diffie-Hellman</a></li>
+    <li><a href="/elgamal_cipher">Cifrado Asimétrico - ElGamal</a></li>
+    <li><a href="/hash">Funciones Hash</a></li>
+    <li><a href="/rsa_signature">Firma Digital - RSA</a></li>
+    <li><a href="/dsa_signature">Firma Digital - DSA</a></li>
+    <li><a href="/elgamal_signature">Firma Digital - ElGamal</a></li>
+    <li><a href="/certificates">Certificados X.509</a></li>
+</ul>
+{% endblock %}

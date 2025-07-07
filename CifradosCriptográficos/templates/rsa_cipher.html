@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cifrado Asimétrico - RSA</h2>
+
+<p>Este formulario te permite:</p>
+<ul>
+    <li>Generar un par de claves RSA de 2048 bits.</li>
+    <li>Cifrar texto con una clave pública.</li>
+    <li>Descifrar texto con una clave privada.</li>
+</ul>
+
+<form method="post">
+    <button type="submit" name="action" value="Generate">Generar claves RSA</button>
+</form>
+
+{% if generated_keys %}
+<h3>Claves generadas:</h3>
+<p><strong>Clave pública:</strong></p>
+<textarea rows="10" cols="70">{{ generated_keys.public }}</textarea>
+<p><strong>Clave privada:</strong></p>
+<textarea rows="10" cols="70">{{ generated_keys.private }}</textarea>
+{% endif %}
+
+<hr>
+
+<form method="post">
+    <label>Clave (pública para cifrar, privada para descifrar):</label><br>
+    <textarea name="key" rows="10" cols="70" required></textarea><br><br>
+    <label>Texto:</label><br>
+    <textarea name="text" rows="4" cols="70" required></textarea><br><br>
+    <button type="submit" name="action" value="Encrypt">Cifrar</button>
+    <button type="submit" name="action" value="Decrypt">Descifrar</button>
+</form>
+
+{% if result %}
+<h3>Resultado:</h3>
+<pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}
