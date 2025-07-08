@@ -1,1 +1,89 @@
 {#RSA, Diffie-Hellman, ElGamal, Merkle-Hellman#}
+{% extends "base.html" %}
+{% block content %}
+<h2>Criptografía Asimétrica</h2>
+
+<p>La criptografía asimétrica utiliza un par de claves matemáticamente relacionadas: una clave pública y una clave privada. Esta tecnología revolucionó la seguridad digital al permitir comunicaciones seguras sin necesidad de compartir claves secretas previamente.</p>
+
+<div class="info-section">
+    <h4>Características Principales</h4>
+    <p>• <strong>Clave Pública:</strong> Puede ser compartida libremente y se usa para cifrar mensajes o verificar firmas.</p>
+    <p>• <strong>Clave Privada:</strong> Debe mantenerse secreta y se usa para descifrar mensajes o crear firmas digitales.</p>
+    <p>• <strong>Seguridad:</strong> Basada en problemas matemáticos computacionalmente difíciles.</p>
+</div>
+
+<div class="info-section">
+    <h4>Algoritmos Disponibles</h4>
+    <p>Explora los diferentes algoritmos de criptografía asimétrica implementados en este sistema:</p>
+</div>
+
+<div class="form-grid">
+    <div class="info-card">
+        <h3>RSA (Rivest-Shamir-Adleman)</h3>
+        <p>El algoritmo más utilizado en criptografía asimétrica. Basado en la dificultad de factorizar números enteros grandes.</p>
+        <p><strong>Usos:</strong> Cifrado de datos, firmas digitales, intercambio de claves.</p>
+        <p><strong>Fortaleza:</strong> Seguridad basada en factorización de números primos.</p>
+        <a href="/rsa_cipher" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px;">Probar RSA</a>
+    </div>
+
+    <div class="info-card">
+        <h3>Diffie-Hellman</h3>
+        <p>Protocolo para el intercambio seguro de claves criptográficas a través de un canal público inseguro.</p>
+        <p><strong>Usos:</strong> Establecimiento de claves compartidas, protocolos de comunicación segura.</p>
+        <p><strong>Fortaleza:</strong> Basado en el problema del logaritmo discreto.</p>
+        <a href="/diffie_hellman" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px;">Probar Diffie-Hellman</a>
+    </div>
+
+    <div class="info-card">
+        <h3>ElGamal</h3>
+        <p>Sistema de cifrado asimétrico basado en el problema del logaritmo discreto, similar a Diffie-Hellman.</p>
+        <p><strong>Usos:</strong> Cifrado de mensajes, firmas digitales, sistemas de votación electrónica.</p>
+        <p><strong>Fortaleza:</strong> Seguridad probabilística y resistencia a ataques.</p>
+        <a href="/elgamal_cipher" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px;">Probar ElGamal</a>
+    </div>
+
+    <div class="info-card">
+        <h3>Merkle-Hellman</h3>
+        <p>Uno de los primeros sistemas de criptografía asimétrica, basado en el problema de la mochila (knapsack).</p>
+        <p><strong>Usos:</strong> Cifrado de datos (histórico), investigación académica.</p>
+        <p><strong>Nota:</strong> Actualmente considerado inseguro, pero útil para propósitos educativos.</p>
+        <a href="/merkle_hellman" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px;">Probar Merkle-Hellman</a>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <strong>Nota Educativa:</strong> Estos algoritmos están implementados con fines educativos. Para uso en producción, utiliza bibliotecas criptográficas probadas y auditadas.
+</div>
+
+<h3>Aplicaciones Prácticas</h3>
+<ul>
+    <li><strong>Comercio Electrónico:</strong> Protección de transacciones financieras online</li>
+    <li><strong>Correo Electrónico:</strong> Cifrado y firma de mensajes (PGP/GPG)</li>
+    <li><strong>Navegación Web:</strong> Protocolo HTTPS para comunicaciones seguras</li>
+    <li><strong>Firmas Digitales:</strong> Autenticación de documentos y software</li>
+    <li><strong>Blockchain:</strong> Verificación de transacciones en criptomonedas</li>
+</ul>
+
+<h3>Ventajas y Desventajas</h3>
+<div class="form-grid">
+    <div class="alert alert-success">
+        <strong>Ventajas:</strong>
+        <ul style="margin-top: 10px;">
+            <li>No requiere canal seguro para intercambio de claves</li>
+            <li>Permite autenticación y no repudio</li>
+            <li>Escalable para grandes redes</li>
+            <li>Facilita firmas digitales</li>
+        </ul>
+    </div>
+    
+    <div class="alert alert-warning">
+        <strong>Desventajas:</strong>
+        <ul style="margin-top: 10px;">
+            <li>Computacionalmente más lento que criptografía simétrica</li>
+            <li>Requiere claves más largas para seguridad equivalente</li>
+            <li>Vulnerable a computación cuántica</li>
+            <li>Gestión de claves más compleja</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

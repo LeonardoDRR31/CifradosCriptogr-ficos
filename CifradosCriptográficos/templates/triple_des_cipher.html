@@ -1,23 +1,125 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Cifrado en Bloque - Triple DES (3DES)</h2>
+<h2>Cifrados en Bloque</h2>
 
-<p>Este formulario te permite cifrar o descifrar texto usando el algoritmo Triple DES (3DES).</p>
-<p><strong>Clave:</strong> Debe tener una longitud de entre 16 y 24 caracteres y debe ser una combinación suficientemente compleja. Si es más corta, se rellenará con ceros, pero no todas las combinaciones serán aceptadas (algunas pueden considerarse inválidas por motivos de paridad de claves).</p>
-<p><strong>Texto:</strong> Si quieres cifrar, ingresa el texto en claro. Si quieres descifrar, ingresa el texto en hexadecimal.</p>
-<p><strong>Recomendación:</strong> Usa al menos 16 caracteres alfanuméricos (por ejemplo, <code>1234567890abcdef</code>) para evitar errores.</p>
+<p>Los cifrados en bloque procesan datos en bloques de tamaño fijo, aplicando la misma transformación a cada bloque usando una clave. Son fundamentales en la criptografía moderna y forman la base de muchos protocolos de seguridad.</p>
 
-<form method="post">
-    <label>Clave:</label><br>
-    <input type="text" name="key" required><br><br>
-    <label>Texto (si descifra, ingrese en hexadecimal):</label><br>
-    <textarea name="text" rows="4" cols="50" required></textarea><br><br>
-    <button type="submit" name="action" value="Encrypt">Cifrar</button>
-    <button type="submit" name="action" value="Decrypt">Descifrar</button>
-</form>
+<div class="info-section">
+    <h4>Características de los Cifrados en Bloque</h4>
+    <p>• <strong>Tamaño de Bloque:</strong> Los datos se dividen en bloques de longitud fija (ej: 64 bits para DES, 128 bits para AES).</p>
+    <p>• <strong>Clave:</strong> Se utiliza la misma clave para todos los bloques del mensaje.</p>
+    <p>• <strong>Modos de Operación:</strong> ECB, CBC, CFB, OFB, CTR para procesar múltiples bloques.</p>
+    <p>• <strong>Padding:</strong> Se añaden bits al último bloque si no tiene el tamaño requerido.</p>
+</div>
+
+<div class="info-section">
+    <h4>Algoritmos Implementados</h4>
+    <p>Explora los diferentes algoritmos de cifrado en bloque disponibles:</p>
+</div>
+
+<div class="form-grid">
+    <div class="info-card">
+        <h3>DES (Data Encryption Standard)</h3>
+        <p>Algoritmo de cifrado histórico desarrollado por IBM en los años 70. Utiliza bloques de 64 bits y claves de 56 bits efectivos.</p>
+        <p><strong>Tamaño de Bloque:</strong> 64 bits</p>
+        <p><strong>Tamaño de Clave:</strong> 56 bits (8 bytes con paridad)</p>
+        <p><strong>Estado:</strong> Considerado inseguro por la longitud de clave</p>
+        <form method="post" action="/des_cipher" style="margin-top: 15px;">
+            <label>Clave (máximo 8 caracteres):</label>
+            <input type="text" name="key" class="key-input" maxlength="8" required>
+            <label>Texto:</label>
+            <textarea name="text" rows="3" placeholder="Ingresa tu texto aquí..." required></textarea>
+            <button type="submit" name="action" value="Encrypt">Cifrar con DES</button>
+            <button type="submit" name="action" value="Decrypt">Descifrar con DES</button>
+        </form>
+    </div>
+
+    <div class="info-card">
+        <h3>AES (Advanced Encryption Standard)</h3>
+        <p>Estándar actual de cifrado adoptado por el gobierno de EE.UU. Reemplazó a DES con mayor seguridad y eficiencia.</p>
+        <p><strong>Tamaño de Bloque:</strong> 128 bits</p>
+        <p><strong>Tamaño de Clave:</strong> 128, 192 o 256 bits</p>
+        <p><strong>Estado:</strong> Considerado seguro y ampliamente utilizado</p>
+        <form method="post" action="/aes_cipher" style="margin-top: 15px;">
+            <label>Clave (hasta 16 caracteres):</label>
+            <input type="text" name="key" class="key-input" maxlength="16" required>
+            <label>Texto:</label>
+            <textarea name="text" rows="3" placeholder="Ingresa tu texto aquí..." required></textarea>
+            <button type="submit" name="action" value="Encrypt">Cifrar con AES</button>
+            <button type="submit" name="action" value="Decrypt">Descifrar con AES</button>
+        </form>
+    </div>
+
+    <div class="info-card">
+        <h3>Blowfish</h3>
+        <p>Algoritmo de cifrado diseñado por Bruce Schneier. Conocido por su velocidad y flexibilidad en el tamaño de clave.</p>
+        <p><strong>Tamaño de Bloque:</strong> 64 bits</p>
+        <p><strong>Tamaño de Clave:</strong> Variable (32 a 448 bits)</p>
+        <p><strong>Estado:</strong> Seguro para la mayoría de aplicaciones</p>
+        <form method="post" action="/blowfish_cipher" style="margin-top: 15px;">
+            <label>Clave (hasta 16 caracteres):</label>
+            <input type="text" name="key" class="key-input" maxlength="16" required>
+            <label>Texto:</label>
+            <textarea name="text" rows="3" placeholder="Ingresa tu texto aquí..." required></textarea>
+            <button type="submit" name="action" value="Encrypt">Cifrar con Blowfish</button>
+            <button type="submit" name="action" value="Decrypt">Descifrar con Blowfish</button>
+        </form>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <strong>Modo de Operación:</strong> Estas implementaciones utilizan el modo ECB (Electronic Codebook) para simplicidad educativa. En aplicaciones reales, se recomiendan modos como CBC, GCM o CTR.
+</div>
+
+<h3>Modos de Operación</h3>
+<div class="info-section">
+    <h4>Principales Modos de Cifrado en Bloque</h4>
+    <ul>
+        <li><strong>ECB (Electronic Codebook):</strong> Cada bloque se cifra independientemente. Simple pero inseguro para datos grandes.</li>
+        <li><strong>CBC (Cipher Block Chaining):</strong> Cada bloque se XOR con el bloque cifrado anterior. Requiere Vector de Inicialización (IV).</li>
+        <li><strong>CFB (Cipher Feedback):</strong> Convierte el cifrado en bloque en cifrado de flujo.</li>
+        <li><strong>OFB (Output Feedback):</strong> Similar a CFB pero con realimentación del output del cifrado.</li>
+        <li><strong>CTR (Counter):</strong> Utiliza un contador que se incrementa para cada bloque.</li>
+        <li><strong>GCM (Galois/Counter Mode):</strong> Proporciona autenticación además de cifrado.</li>
+    </ul>
+</div>
+
+<h3>Consideraciones de Seguridad</h3>
+<div class="form-grid">
+    <div class="alert alert-warning">
+        <strong>Vulnerabilidades Comunes:</strong>
+        <ul style="margin-top: 10px;">
+            <li>Uso de claves débiles o predecibles</li>
+            <li>Reutilización de vectores de inicialización</li>
+            <li>Ataques de padding en modo CBC</li>
+            <li>Patrones visibles en modo ECB</li>
+        </ul>
+    </div>
+    
+    <div class="alert alert-success">
+        <strong>Mejores Prácticas:</strong>
+        <ul style="margin-top: 10px;">
+            <li>Use claves generadas aleatoriamente</li>
+            <li>Implemente vectores de inicialización únicos</li>
+            <li>Considere modos autenticados como GCM</li>
+            <li>Mantenga las claves seguras y rótelas regularmente</li>
+        </ul>
+    </div>
+</div>
+
+<h3>Aplicaciones Prácticas</h3>
+<ul>
+    <li><strong>Almacenamiento de Datos:</strong> Cifrado de archivos y bases de datos</li>
+    <li><strong>Comunicaciones:</strong> Protocolos VPN, SSL/TLS</li>
+    <li><strong>Sistemas de Pago:</strong> Transacciones bancarias y comercio electrónico</li>
+    <li><strong>Dispositivos Móviles:</strong> Cifrado de almacenamiento en smartphones</li>
+    <li><strong>Redes Inalámbricas:</strong> WPA2, WPA3 para Wi-Fi</li>
+</ul>
 
 {% if result %}
-<h3>Resultado:</h3>
-<pre>{{ result }}</pre>
+<div class="result-section">
+    <h3>Resultado:</h3>
+    <pre>{{ result }}</pre>
+</div>
 {% endif %}
 {% endblock %}

@@ -183,14 +183,14 @@ h3 {
 
 /* Párrafos y descripciones */
 p {
-    color: #555;
+    color: #ffecd2;
     margin-bottom: 15px;
     line-height: 1.7;
 }
 
 /* Listas */
 ul, ol {
-    color: #555;
+    color: #ffecd2;
     margin-bottom: 15px;
     padding-left: 20px;
 }
@@ -231,7 +231,7 @@ form {
 label {
     display: block;
     margin-bottom: 8px;
-    color: #2c3e50;
+    color: #f0f8ff;
     font-weight: 600;
     font-size: 1.1rem;
 }
@@ -357,7 +357,7 @@ hr {
 }
 
 .info-section p {
-    color: #666;
+    color: #00f2fe;
     margin-bottom: 10px;
 }
 
