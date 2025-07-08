@@ -1,21 +1,74 @@
-{#plantilla base con navbar#}
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Cifrados Criptográficos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cifrados Criptográficos{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="description" content="Herramienta educativa para aprender sobre algoritmos de cifrado y criptografía">
 </head>
 <body>
     <header>
-        <h1>Cifrados Criptográficos</h1>
-        <nav>
-            <a href="/">Menú Principal</a> |
-            {#<a href="/stream_ciphers">Cifrado en Flujo</a>#}
-        </nav>
+        <div class="container">
+            <h1>🔐 Cifrados Criptográficos</h1>
+            <nav>
+                <a href="/" class="nav-link">🏠 Inicio</a>
+                <a href="/stream_ciphers" class="nav-link">🌊 Cifrado en Flujo</a>
+                <a href="/block_ciphers" class="nav-link">🧱 Cifrado en Bloque</a>
+                <a href="/rsa_cipher" class="nav-link">🔑 Cifrado Asimétrico</a>
+                <a href="/hash" class="nav-link">🔍 Funciones Hash</a>
+                <a href="/rsa_signature" class="nav-link">✍️ Firmas Digitales</a>
+                <a href="/certificates" class="nav-link">📜 Certificados</a>
+            </nav>
+        </div>
     </header>
+    
     <main>
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
     </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cifrados Criptográficos - Herramienta Educativa</p>
+            <p>Desarrollado para fines académicos y de aprendizaje</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Marcar el enlace activo en la navegación
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Validación básica de formularios
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = e.submitter;
+                    if (submitBtn && submitBtn.type === 'submit') {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<span class="loading"></span> Procesando...';
+                        
+                        // Rehabilitar el botón después de 3 segundos
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = submitBtn.getAttribute('data-original-text') || 'Enviar';
+                        }, 3000);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
